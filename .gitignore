@@ -1,0 +1,21 @@
+# === KIN SECURITY - NEVER PUSH ===
+.env
+serviceAccountKey.json
+*.pem
+__pycache__/
+*.pyc
+venv/
+.env
+.DS_Store
+
+# Python
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+.env.local
+
+# Render / Node
+node_modules/
+.next/
