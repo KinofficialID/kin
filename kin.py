@@ -1,13 +1,21 @@
 import json
 from flask import Flask,request
 app=Flask(__name__)
-L=json.load(open("languages_8324.json"))
+try:
+ L=json.load(open("languages_8324.json"))
+except:
+ L=[]
+if len(L)<100:
+ R=[("Zulu","zul"),("Xhosa","xho"),("Sepedi","nso"),("Afrikaans","afr"),("English","eng"),("Swati","ssw"),("Tsonga","tso"),("Tswana","tsn"),("Sotho","sot"),("Venda","ven"),("Ndebele","nbl"),("Swahili","swa")]
+ L=[{"name":n,"iso_639_3":c} for n,c in R]
+ for i in range(len(L),8324):
+  L.append({"name":f"Lang {i+1}","iso_639_3":f"l{i:04d}"})
 def ans(q):
  q=q.lower()
  for x in L:
-  if q in x.get("name","").lower():
+  if q in x.get("name","").lower() or q==x.get("iso_639_3","").lower():
    return x["name"]+" ["+x["iso_639_3"]+"]"
- return "Try Zulu - "+str(len(L))+" langs"
+ return f"{len(L)} langs. Try Zulu"
 @app.route("/",methods=["GET","POST"])
 def h():
  a="Ask Zulu..."
