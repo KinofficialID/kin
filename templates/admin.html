@@ -1,8 +1,61 @@
 <!DOCTYPE html>
-<html>
-<body style="font-family:Arial; text-align:center; padding:40px">
-<h1>Admin Dashboard - VendaKiN</h1>
-<p style="color:green">✅ 8324 Languages Working</p>
-<a href="/">Home</a>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - VendaKiN</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0f0f0f;color:white;padding:20px}
+.header{background:linear-gradient(135deg,#00d084,#00a86b);padding:20px;border-radius:15px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
+.header h1{font-size:22px}
+.card{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:20px;margin-bottom:20px}
+.stat{font-size:28px;font-weight:bold;color:#00d084}
+.users{width:100%;border-collapse:collapse;margin-top:15px}
+.users th{background:#222;padding:12px;text-align:left;color:#00d084}
+.users td{padding:12px;border-bottom:1px solid #333}
+.badge{background:#00d084;color:black;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+a.btn{background:#00d084;color:black;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block}
+a.logout{color:#ff4444;text-decoration:none;margin-left:15px}
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1>KiN Official - Admin</h1>
+    <small>Thulamela, Limpopo • Culture Platform</small>
+  </div>
+  <div>
+    <a href="/" class="btn">Home</a>
+    <a href="/dashboard" class="btn" style="margin-left:8px">User</a>
+    <a href="/logout" class="logout">Logout</a>
+  </div>
+</div>
+<div class="card">
+  <h3>🌍 Languages System</h3>
+  <div class="stat">8,324 Languages Loaded</div>
+  <small style="color:#888">Source: languages_8324.json • Live on Render</small>
+</div>
+<div class="card">
+  <h3>👥 Users Management</h3>
+  <table class="users">
+    <tr><th>User ID</th><th>Role</th><th>Status</th></tr>
+    {% if users %}
+      {% for user in users %}
+      <tr>
+        <td>{{ user[0] if user is iterable else user }}</td>
+        <td><span class="badge">{{ user[1] if user|length>1 else 'admin' }}</span></td>
+        <td style="color:#00d084">● Active</td>
+      </tr>
+      {% endfor %}
+    {% else %}
+    <tr><td>0000000000000</td><td><span class="badge">admin</span></td><td style="color:#00d084">● Active</td></tr>
+    {% endif %}
+  </table>
+</div>
+<div class="card" style="text-align:center;color:#888">
+  <p>✅ Server: kin-hivx.onrender.com</p>
+  <p>✅ Status: Live & Secure</p>
+</div>
 </body>
-</html>
+  </html>
