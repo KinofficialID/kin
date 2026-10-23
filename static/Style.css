@@ -1,0 +1,94 @@
+/* KIN - Facebook Style - FREE - Beautiful */
+body {
+  background: #f0f2f5;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.kin-header {
+  background: #0a3d62;
+  color: white;
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.kin-header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.post-card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 12px auto;
+  max-width: 600px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.post-card .id {
+  font-weight: bold;
+  color: #0a3d62;
+  font-size: 13px;
+}
+.post-card .tshi {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 8px 0;
+  color: #050505;
+}
+.post-card .eng {
+  color: #65676b;
+  font-size: 14px;
+}
+.post-card .meaning {
+  background: #f0f2f5;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  border-top: 1px solid #ddd;
+  padding-top: 8px;
+}
+.actions button {
+  border: none;
+  background: none;
+  color: #65676b;
+  font-weight: bold;
+  cursor: pointer;
+  width: auto;
+}
+.login-box {
+  background: white;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+button.post-btn {
+  background: #0a3d62;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
+  }
