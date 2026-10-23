@@ -55,21 +55,46 @@ def upload_to_oregon(file_obj, filename):
     file_obj.save(path)
     return f"/{path}"
 
-# --- LOGIN ---
+# --- LOGIN WITH PASSWORD - SECURE, NO BYPASS ---
+USERS_FILE = "users.json"
+
+def load_users():
+    if not os.path.exists(USERS_FILE): 
+        return {}
+    try: 
+        return json.load(open(USERS_FILE, encoding="utf-8"))
+    except: 
+        return {}
+
 @app.route("/login", methods=["GET","POST"])
 def login():
+    users = load_users()
     if request.method == "POST":
         uid = request.form.get("user_id","").strip()
-        if uid:
+        pwd = request.form.get("password","").strip()
+        if not uid or not pwd:
+            return "Need ID and password <a href=/login>back</a>"
+        # First time = register + go to KYC
+        if uid not in users:
+            users[uid] = {"password": pwd, "verified": False, "kyc_url": ""}
+            json.dump(users, open(USERS_FILE,"w",encoding="utf-8"), indent=2)
+            session["user_id"] = uid
+            return redirect("/kyc")
+        # Check password
+        if users[uid].get("password") == pwd:
             session["user_id"] = uid
             return redirect("/")
+        else:
+            return "Wrong password for that ID <a href=/login>Try again</a>"
     return '''
-    <h2>KIN Login - Use Own ID</h2>
+    <h2>KIN Login - Own ID + Password</h2>
     <form method=post>
-    <input name=user_id placeholder="KIN ID e.g. KIN001" required>
-    <button>Login</button>
+    <input name=user_id placeholder="KIN ID e.g. KIN001" required><br>
+    <input name=password type=password placeholder="Your secret password" required><br>
+    <button>Login / Register first time</button>
     </form>
     '''
+
 
 @app.route("/logout")
 def logout():
